@@ -1,0 +1,224 @@
+.tj-header{
+  position: sticky; top:0; z-index:50;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* üst sıra */
+.tj-topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 12px 0;
+}
+.tj-burger{
+  border:0; background:transparent; padding:8px; margin:-8px;
+}
+.tj-logo{
+  font-weight:900; letter-spacing:.5px; font-size:26px; text-decoration:none; color:var(--text);
+}
+
+/* sağ ikonlar */
+.tj-actions{ display:flex; gap:10px; }
+
+/* alt sıra: chipler + arama */
+.tj-chipbar{
+  display:flex; align-items:center; gap:10px;
+  padding: 0 0 12px 0;
+  overflow-x: auto;
+}
+.tj-chipbar::-webkit-scrollbar{ height:6px; }
+.tj-chipbar::-webkit-scrollbar-thumb{ background:#ddd; border-radius:8px; }
+
+/* arama */
+.tj-search{
+  margin-left:auto; position:relative; flex:1; min-width:220px; max-width:420px;
+  display:flex; align-items:center;
+}
+.tj-search input{
+  width:100%; padding:10px 40px 10px 14px;
+  border:1px solid var(--border); border-radius: 999px; background:#fff;
+  font-size:14px;
+}
+.tj-search button{
+  position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  border:0; background:transparent; padding:6px; cursor:pointer;
+}
+
+/* mobil menü */
+.tj-mobile{ display:none; }
+.tj-mobile.open{ display:block; }
+.tj-mobile ul{ list-style:none; padding: 8px 0 14px; margin:0; display:grid; gap:8px; }
+.tj-mobile a{ text-decoration:none; color:inherit; padding:8px 2px; }
+
+/* Kullanıcı Alanı */
+.tj-auth-links { display:flex; gap:8px; align-items:center; }
+.link-sm{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 12px; border:1px solid var(--border); border-radius:999px;
+  text-decoration:none; color:inherit; font-size:13px; background:#fff;
+}
+.link-sm.solid{ background:#111; color:#fff; border-color:#111; }
+.link-sm:hover{ opacity:.92; }
+
+.tj-user{ position:relative; }
+.tj-userbtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border, #e5e7eb);
+  background: #fff;
+  cursor: pointer;
+}
+.tj-userbtn:hover {
+  background: #f6f6f6;
+}
+.tj-username{ max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; }
+
+.tj-usermenu{
+  position:absolute; right:0; top:calc(100% + 6px);
+  background:#fff; border:1px solid var(--border); border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  min-width:180px; padding:6px; z-index:60;
+}
+.tj-usermenu-item{
+  width:100%; text-align:left; padding:10px 12px; border-radius:8px;
+  border:0; background:transparent; cursor:pointer; display:flex; align-items:center; gap:8px;
+  text-decoration:none; color:inherit; font-size:14px;
+}
+.tj-usermenu-item:hover{ background:#f6f6f6; }
+.tj-usermenu-item.danger{ color:#b91c1c; }
+
+.link-reset{ background:none; border:0; padding:8px 0; color:inherit; text-align:left; }
+
+
+
+/* ===============================
+   CATEGORY DROPDOWN TASARIMI
+   =============================== */
+
+   .chip-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  background: #f6f6f6;
+}
+
+
+.chip-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  min-width: 180px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.dropdown-menu.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 18px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+  filter: drop-shadow(0 -1px 1px rgba(0,0,0,0.08));
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background: #f8f8f8;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 16px;
+  color: #222;
+  text-decoration: none;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+
+/* CHIP BAR */
+.tj-chipbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: visible; /* Menü gizlenmesin */
+}
+
+
+/* Dropdown menü tam görünsün */
+.chip-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+/* responsive */
+@media (min-width: 768px){
+  .tj-burger{ display:none; }
+  .tj-mobile{ display:none !important; }
+}
+
+
+@media (max-width: 520px) {
+  .dropdown-menu {
+    left: 0;
+    right: auto;
+    min-width: 160px;
+  }
+}

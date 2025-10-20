@@ -1,0 +1,92 @@
+.profile-container {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.profile-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #111;
+}
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.profile-form label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+.profile-form input {
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s;
+}
+.profile-form input:focus { border-color: #666; }
+.profile-form button {
+  margin-top: 16px;
+  background: #111;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .25s ease;
+}
+.profile-form button:hover { background: #222; }
+.profile-success {
+  text-align: center;
+  color: #0a8025;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* Favoriler kartı */
+.profile-cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 8px 0 16px;
+}
+
+.profile-card{
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+}
+
+.profile-card--accent{
+  background: #0f172a;
+  color: #fff;
+  border-color: transparent;
+}
+
+.pc-head{ display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.pc-badge{
+  display:inline-block; font-size:12px; font-weight:700; padding:4px 8px;
+  border-radius:999px; background:#fff; color:#111;
+}
+.pc-title{ margin:0; font-size:18px; font-weight:700; }
+.pc-text{ margin:8px 0 14px; color:#e5e7eb; }
+
+.pc-btn{
+  display:inline-block; text-decoration:none; font-weight:600;
+  background:#fff; color:#111; padding:10px 14px; border-radius:10px;
+  transition:transform .2s ease, background .2s ease;
+}
+.pc-btn:hover{ background:#e5e7eb; transform: translateY(-1px); }
+

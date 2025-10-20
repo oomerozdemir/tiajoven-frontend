@@ -1,0 +1,131 @@
+import "../styles/contactPage.css";
+import { useState } from "react";
+
+export default function Contact() {
+   const [status, setStatus] = useState({ type: "", msg: "" });
+
+  const API_BASE = import.meta.env.VITE_API_URL || "";
+
+  async function handleSubmit(e) {
+  e.preventDefault();
+
+  const formEl = e.currentTarget;        
+  setStatus({ type: "loading", msg: "Gönderiliyor..." });
+
+  const form = new FormData(formEl);
+  if (form.get("website")) {
+    setStatus({ type: "error", msg: "Spam algılandı." });
+    return;
+  }
+
+  const payload = Object.fromEntries(form.entries());
+
+  try {
+    const res = await fetch(`${API_BASE}/api/messages`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    let data = null;
+    try { data = await res.json(); } catch {}
+
+    if (!res.ok) throw new Error(data?.message || data?.error || `HTTP ${res.status}`);
+
+    setStatus({ type: "success", msg: "Mesajınız alındı. Teşekkürler!" });
+
+    formEl.reset();                         // 👈 artık güvenli
+  } catch (err) {
+    setStatus({ type: "error", msg: err.message || "Gönderilemedi." });
+  }
+}
+
+  return (
+    <section className="contact-wrap">
+      <div className="contact-grid">
+        {/* Sol: Şirket Bilgileri */}
+        <aside className="contact-company">
+          <h3>Şirket Bilgileri</h3>
+
+          <div className="c-block">
+            <div className="c-label">Ünvan</div>
+            <div className="c-value">
+              Tiajoven Tekstil<br />
+              Şair Nigar Sok No 58/4 D:7 Osmanbey.<br />
+              Şişli/İstanbul
+            </div>
+          </div>
+
+          <div className="c-block">
+            <div className="c-label">Telefon</div>
+            <a className="c-value" href="tel:+902123862000">+90 533 777 47 71</a>
+          </div>
+
+     
+
+          <div className="c-block">
+            <div className="c-label">E-Posta</div>
+            <a className="c-value" href="mailto:iletisim@tiajoventekstil.com">
+              iletisim@tiajoventekstil.com
+            </a>
+          </div>
+        </aside>
+
+        {/* Sağ: Form */}
+        <div className="contact-form">
+          <h3>İletişim Formu</h3>
+          <p className="muted">Aşağıdaki formu kullanarak bize mesajınızı iletebilirsiniz.</p>
+
+          <form onSubmit={handleSubmit} noValidate>
+            {/* Honeypot */}
+            <input type="text" name="website" autoComplete="off" tabIndex="-1" className="hp" />
+
+            <div className="form-grid">
+              <div className="f-group">
+                <label>Ad*</label>
+                <input name="firstName" required />
+              </div>
+              <div className="f-group">
+                <label>Soyad*</label>
+                <input name="lastName" required />
+              </div>
+
+              <div className="f-group">
+                <label>+90 Cep Telefonu*</label>
+                <input name="phone" type="tel" pattern="^[0-9\\s()+-]{8,}$" required />
+              </div>
+
+              <div className="f-group">
+                <label>E-posta*</label>
+                <input name="email" type="email" required />
+              </div>
+
+              <div className="f-group f-span2">
+                <label>Konu*</label>
+                <select name="subject" required defaultValue="">
+                  <option value="" disabled>Seçiniz</option>
+                  <option>Ürün Bilgisi</option>
+                  <option>Diğer</option>
+                </select>
+              </div>
+
+              <div className="f-group f-span2">
+                <label>Mesajınız*</label>
+                <textarea name="message" required maxLength={500} rows={5} />
+                <div className="hint">Kalan: 500</div>
+              </div>
+            </div>
+
+            <button className="btn-primary" type="submit" disabled={status.type === "loading"}>
+              Gönder
+            </button>
+
+            {status.type && (
+              <div className={`form-status ${status.type}`}>{status.msg}</div>
+            )}
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}

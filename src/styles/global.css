@@ -1,0 +1,37 @@
+@import "./tokens.css";
+
+/* Basit reset */
+*{ box-sizing: border-box; }
+html,body,#root{ height:100%; }
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family: var(--font-sans);
+}
+
+.app{ min-height:100%; display:flex; flex-direction:column; }
+.main{ flex:1; }
+
+.container{
+  max-width: var(--container);
+  margin: 0 auto; padding: 0 16px;
+}
+
+/* Yardımcı */
+.hide-on-mobile{ display:none; }
+@media (min-width: 768px){ .hide-on-mobile{ display:initial; } }
+
+/* Chip stili */
+.chip{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 16px; border:1px solid var(--chip-border);
+  border-radius: 999px; background: var(--chip-bg);
+  text-decoration:none; color:inherit; white-space:nowrap;
+}
+.chip:focus-visible{ outline:2px solid #000; outline-offset:2px; }
+
+/* Icon button */
+.icon-btn{
+  width:38px; height:38px; display:grid; place-items:center;
+  border:1px solid var(--border); border-radius: 999px;
+  background:#fff; color:inherit; text-decoration:none;
+}

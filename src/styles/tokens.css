@@ -1,0 +1,15 @@
+:root{
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+
+  --brand: #111111; /* siyaha yakın minimalist */
+  --chip-bg: #ffffff;
+  --chip-border: #e5e7eb;
+
+  --radius: 14px;
+  --container: 1200px;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+}

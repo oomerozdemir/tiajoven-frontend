@@ -1,0 +1,92 @@
+/* Kapsayıcı */
+.contact-wrap { padding: 32px 0; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 70vh;
+}
+
+/* Sol blok */
+.contact-company { border-right: 1px solid #e5e7eb; padding-right: 24px; }
+.contact-company h3 { margin: 0 0 16px; font-size: 20px; }
+.c-block { margin-bottom: 16px; }
+.c-label { font-size: 12px; color: #6b7280; margin-bottom: 4px; }
+.c-value { font-size: 14px; color: #111827; }
+.c-value a, .contact-company a { color: #111827; text-decoration: none; }
+.c-value a:hover { text-decoration: underline; }
+
+/* Sağ blok / Form */
+.contact-form h3 { margin: 0 0 4px; font-size: 20px; }
+.contact-form .muted { color: #6b7280; margin: 0 0 20px; font-size: 13px; }
+
+form { background: #fff; }
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 16px;
+}
+.f-group { display: flex; flex-direction: column; }
+.f-group label { font-size: 12px; color: #6b7280; margin-bottom: 6px; }
+.f-group input,
+.f-group select,
+.f-group textarea {
+  appearance: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+  color: #111827;
+  transition: border-color .2s, box-shadow .2s;
+}
+.f-group input:focus,
+.f-group select:focus,
+.f-group textarea:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17,24,39,.1);
+}
+
+.f-span2 { grid-column: span 2; }
+.hint { font-size: 12px; color: #9ca3af; margin-top: 6px; }
+
+/* Honeypot gizli input */
+.hp { position: absolute; left: -9999px; opacity: 0; }
+
+.btn-primary {
+  margin-top: 16px;
+  display: inline-block;
+  background: #111827;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+.btn-primary:hover:not(:disabled) { transform: translateY(-1px); }
+
+.form-status { margin-top: 12px; font-size: 14px; }
+.form-status.success { color: #047857; }
+.form-status.error { color: #b91c1c; }
+.form-status.loading { color: #374151; }
+
+.kvkk { margin-top: 12px; font-size: 12px; color: #6b7280; }
+.kvkk a { color: inherit; text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-company { border-right: 0; padding-right: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 20px; }
+}
+@media (max-width: 560px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .f-span2 { grid-column: auto; }
+}
+ 

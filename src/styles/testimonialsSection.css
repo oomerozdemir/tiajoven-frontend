@@ -1,0 +1,42 @@
+.tij-slider { margin: 60px auto 80px; overflow:hidden; }
+.t-head { text-align:center; margin-bottom:24px; }
+.t-head h2 { font-size:22px; font-weight:800; margin-bottom:6px; }
+.t-head p { color:#6b7280; font-size:14px; margin:0; }
+
+.t-track {
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior:smooth;
+}
+
+.t-card {
+  flex: 0 0 90%;
+  max-width: 90%;
+  scroll-snap-align: start;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:0 3px 10px rgba(0,0,0,0.03);
+}
+
+@media(min-width:768px){
+  .t-card { flex:0 0 45%; max-width:45%; }
+}
+@media(min-width:1024px){
+  .t-card { flex:0 0 30%; max-width:30%; }
+}
+
+.t-user { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.t-user img { width:44px; height:44px; border-radius:50%; object-fit:cover; border:1px solid var(--border); }
+.t-user h4 { margin:0; font-size:15px; }
+.t-user small { color:#6b7280; }
+
+.t-stars { color:#111; font-size:15px; letter-spacing:2px; margin-bottom:8px; }
+.t-quote { line-height:1.55; color:#333; font-size:15px; margin:0; }
