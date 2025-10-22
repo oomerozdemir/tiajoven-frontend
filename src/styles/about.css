@@ -1,5 +1,10 @@
-.about-wrap { padding: 32px 0; height: 70vh;}
+/* Kapsayıcı */
+.about-wrap {
+  padding: 32px 0;
+  /* height: 70vh;  <-- kaldırıldı: mobilde sıkışmayı/taşmayı engelle */
+}
 
+/* Hero */
 .about-hero {
   max-width: 1000px;
   margin: 0 auto 24px;
@@ -7,17 +12,18 @@
   text-align: center;
 }
 .about-title {
-  font-size: clamp(28px, 5vw, 44px);
+  font-size: clamp(26px, 6vw, 42px); /* mobilde biraz daha esnek */
   font-weight: 800;
   margin: 0 0 8px;
 }
 .about-sub {
-  font-size: clamp(14px, 2.2vw, 18px);
+  font-size: clamp(14px, 2.8vw, 18px); /* mobilde okunurluk */
   color: #4b5563;
   margin: 0 auto;
   max-width: 820px;
 }
 
+/* Öne çıkanlar */
 .about-highlights {
   max-width: 1100px;
   margin: 12px auto 28px;
@@ -35,13 +41,13 @@
   box-shadow: 0 2px 6px rgba(0,0,0,.04);
 }
 .a-kpi {
-  font-size: 28px;
+  font-size: clamp(22px, 6vw, 28px);
   font-weight: 800;
   line-height: 1;
   margin-bottom: 6px;
 }
 .a-label {
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: .2px;
   color: #6b7280;
   margin-bottom: 6px;
@@ -49,17 +55,18 @@
 }
 .a-text { font-size: 14px; color: #374151; }
 
+/* Gövde */
 .about-body {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 16px 24px;
 }
 .about-body h2 {
-  font-size: 24px;
+  font-size: clamp(20px, 5vw, 24px);
   margin: 10px 0;
 }
 .about-body h3 {
-  font-size: 18px;
+  font-size: clamp(16px, 4.4vw, 18px);
   margin: 16px 0 6px;
   color: #111827;
 }
@@ -82,3 +89,15 @@
   transition: transform .15s ease, opacity .15s ease;
 }
 .btn-primary:hover { transform: translateY(-1px); }
+
+/* Mobil optimizasyon */
+@media (max-width: 600px) {
+  .about-highlights {
+    gap: 10px;
+  }
+  .a-card { padding: 14px; }
+  .about-cta .btn-primary {
+    width: 100%; /* tek dokunuşla kolay tıklanır */
+    text-align: center;
+  }
+}

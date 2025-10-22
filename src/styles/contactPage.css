@@ -1,5 +1,6 @@
 /* Kapsayıcı */
 .contact-wrap { padding: 32px 0; }
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -7,11 +8,14 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 16px;
-  height: 70vh;
+  /* height: 70vh; <-- kaldırıldı: mobilde formun kesilmesini engeller */
 }
 
 /* Sol blok */
-.contact-company { border-right: 1px solid #e5e7eb; padding-right: 24px; }
+.contact-company {
+  border-right: 1px solid #e5e7eb;
+  padding-right: 24px;
+}
 .contact-company h3 { margin: 0 0 16px; font-size: 20px; }
 .c-block { margin-bottom: 16px; }
 .c-label { font-size: 12px; color: #6b7280; margin-bottom: 4px; }
@@ -37,8 +41,8 @@ form { background: #fff; }
   appearance: none;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
-  padding: 10px 12px;
-  font-size: 14px;
+  padding: 12px 14px; /* mobil dokunmatik hedef büyütme */
+  font-size: 16px;    /* iOS zoom’u önler */
   outline: none;
   background: #fff;
   color: #111827;
@@ -60,6 +64,7 @@ form { background: #fff; }
 .btn-primary {
   margin-top: 16px;
   display: inline-block;
+  width: auto;
   background: #111827;
   color: #fff;
   border: none;
@@ -80,13 +85,20 @@ form { background: #fff; }
 .kvkk { margin-top: 12px; font-size: 12px; color: #6b7280; }
 .kvkk a { color: inherit; text-decoration: underline; }
 
-/* Responsive */
+/* Tablet aşağısı: tek sütun + padding düzeltmeleri */
 @media (max-width: 960px) {
   .contact-grid { grid-template-columns: 1fr; }
-  .contact-company { border-right: 0; padding-right: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 20px; }
+  .contact-company {
+    border-right: 0;
+    padding-right: 0;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 20px;
+  }
 }
+
+/* Küçük telefonlar: form tek kolon, buton tam genişlik */
 @media (max-width: 560px) {
   .form-grid { grid-template-columns: 1fr; }
   .f-span2 { grid-column: auto; }
+  .btn-primary { width: 100%; text-align: center; } /* tek el ile rahat tıklama */
 }
- 
