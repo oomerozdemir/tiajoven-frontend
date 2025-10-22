@@ -10,7 +10,7 @@
   --shadow: 0 10px 30px rgba(0,0,0,.08);
 }
 
-/* Yardımcılar */
+/* Yardımcılar (desktop’ta göster, mobilde gizle/göster) */
 .hide-on-mobile { display: none; }
 .show-on-mobile { display: inline-flex; }
 
@@ -19,25 +19,50 @@
   .show-on-mobile { display: none; }
 }
 
-.container { padding: 0 16px; max-width: 1200px; margin: 0 auto; }
+/* Container */
+.container { padding: 0 16px; max-width: 1200px; margin: 0 auto; box-sizing: border-box; }
 
 /* ============ Header ============ */
-.tj-header{ position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid var(--border); }
-.tj-topbar{ display:flex; align-items:center; justify-content:space-between; gap: 12px; height: 60px; }
-.tj-logo{ font-weight: 700; font-size: 20px; color: var(--text); text-decoration:none; letter-spacing:.2px; }
+.tj-header{
+  position: sticky; top: 0; z-index: 50;
+  background: var(--bg); border-bottom: 1px solid var(--border);
+  width: 100%;
+  /* mobil sağdan taşmayı kes */
+  overflow-x: clip;
+}
+.tj-topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  gap: 12px; height: 60px;
+  /* taşmaları önlemek için */
+  overflow: hidden;
+}
+
+/* sütunların doğru akması için */
+.tj-logo{ flex: 0 0 auto; }
+.tj-actions{ flex: 0 0 auto; display:flex; align-items:center; gap:8px; }
+.tj-search{ flex: 1 1 auto; min-width: 0; display:flex; align-items:center; }
+
+/* Logo */
+.tj-logo{
+  font-weight: 700; font-size: 20px; color: var(--text);
+  text-decoration:none; letter-spacing:.2px;
+}
 
 /* Icon/Buttons */
-.icon-btn{ border:0; background:transparent; padding:8px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; }
+.icon-btn{
+  border:0; background:transparent; padding:8px; cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center; border-radius:10px;
+}
 .icon-btn:hover{ background: var(--accent-weak); }
 
 .tj-burger{ display: none; }
 .tj-burger:active{ transform: scale(.98); }
 
 /* Actions (sağ taraf) */
-.tj-actions{ display:flex; align-items:center; gap:6px; }
 .tj-auth-links{ display:flex; gap:8px; align-items:center; }
 .tj-auth-links .link-sm{
-  display:inline-flex; align-items:center; gap:6px; font-size:14px; padding:8px 10px; border-radius:10px; color:var(--text); text-decoration:none; background:transparent;
+  display:inline-flex; align-items:center; gap:6px; font-size:14px;
+  padding:8px 10px; border-radius:10px; color:var(--text); text-decoration:none; background:transparent;
 }
 .tj-auth-links .link-sm.solid{ background:#111827; color:#fff; }
 .tj-auth-links .link-sm:hover{ background:var(--accent-weak); }
@@ -45,7 +70,10 @@
 
 /* Kullanıcı menüsü */
 .tj-user{ position: relative; z-index: 1000; }
-.tj-userbtn{ display:inline-flex; align-items:center; gap:6px; padding:8px 10px; border-radius:10px; border:0; background:transparent; cursor:pointer; }
+.tj-userbtn{
+  display:inline-flex; align-items:center; gap:6px; padding:8px 10px;
+  border-radius:10px; border:0; background:transparent; cursor:pointer;
+}
 .tj-userbtn:hover{ background:var(--accent-weak); }
 .tj-usermenu{
   position:absolute; right:0; top:calc(100% + 8px); min-width: 180px;
@@ -71,7 +99,7 @@
 .chip-dropdown .chip{ cursor:pointer; }
 .dropdown-menu{
   position:absolute; top:calc(100% + 8px); left:0; min-width:240px; background:#fff; border:1px solid var(--border);
-  border-radius:12px; box-shadow: var(--shadow); padding:8px; display:none; max-height: 60vh; overflow:auto;
+  border-radius:12px; box-shadow: var(--shadow); padding:8px; display:none; max-height: 60vh; overflow:auto; z-index: 1001;
 }
 .dropdown-menu.active{ display:block; }
 .dropdown-menu a{ display:block; padding:10px 12px; border-radius:8px; color:var(--text); text-decoration:none; }
@@ -79,10 +107,13 @@
 .dropdown-empty{ display:block; padding:10px 12px; color: var(--muted); }
 
 /* ============ Arama ============ */
-.tj-search{ position: relative; display:flex; align-items:center; margin-left:auto; }
+.tj-search{ position: relative; }
 .tj-search input{
-  height:38px; width:min(56vw, 420px); border:1px solid var(--border); border-radius:999px;
+  height:38px; width:min(56vw, 420px);
+  border:1px solid var(--border); border-radius:999px;
   padding: 0 42px 0 14px; outline:none; font-size:14px; background:#fff;
+  /* satırı taşırmasın */
+  max-width: 100%;
 }
 .tj-search button{
   position:absolute; right:4px; height:30px; width:34px; border:0; border-radius:999px; background:transparent; cursor:pointer;
@@ -108,6 +139,7 @@
   background:#fff; box-shadow: 0 20px 60px rgba(0,0,0,.20);
   transform: translateX(-102%); transition: transform .25s ease;
   display:flex; flex-direction:column; gap:12px; padding:14px;
+  will-change: transform;
 }
 .tj-mobile.open .tj-drawer{ transform: translateX(0); }
 
@@ -143,7 +175,31 @@
 .tj-header .tj-logo:hover{ opacity:.9; }
 .tj-chipbar .chip.w-full{ width:100%; justify-content:space-between; }
 
-
+/* ============ Mobil özel: taşma ve görünürlük ============ */
 @media (max-width: 767.98px){
-  .tj-burger{ display: inline-flex; }
+  /* yalnızca hamburger + logo görünsün */
+  .hide-on-mobile { display: none !important; }
+  .show-on-mobile { display: inline-flex !important; }
+
+  /* satır taşmasın; boşlukları daralt */
+  .tj-topbar{ gap: 8px; padding: 0 12px; }
+
+  /* header içindeki dropdown’ları kapat (çekmecede açılacak) */
+  .tj-header .dropdown-menu{ display: none !important; }
+  .tj-drawer .dropdown-menu{ display: block !important; position: static; box-shadow: none; border: 0; padding: 0; }
+  .tj-drawer .dropdown-menu a{ padding:10px 0; border-radius: 0; }
+
+  /* burger görünür */
+  .tj-burger{ display: inline-flex; align-items:center; justify-content:center; }
 }
+
+/* Masaüstü: mobil çekmece ve burger gizli */
+@media (min-width: 768px){
+  .tj-burger{ display: none !important; }
+  .tj-mobile{ display: none !important; }
+  .hide-on-desktop{ display: none !important; }
+}
+
+/* Ek güvenlik: arama ve container taşma önleme */
+.tj-search input { max-width: 100%; }
+.tj-header .container { padding-left: 16px; padding-right: 16px; }

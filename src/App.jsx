@@ -71,10 +71,8 @@ export default function App(){
 /* 
 **********************************YAPILACAKLAR***********************
 
-footer kısmıını ekle
 hakkımızda,sss gıbı sayfaları yapalım
 
-mobile responsive olucak
 animasyonlar ekleyebiliriz
 
 one cıkanlardan yonlendırme yapalım tıklandıgında kategorısıne gıtsın
