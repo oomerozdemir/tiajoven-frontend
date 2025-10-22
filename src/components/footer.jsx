@@ -1,4 +1,5 @@
 import { Instagram, Facebook, Phone, Mail } from "lucide-react"
+import { Link } from "react-router-dom"
 import "../styles/footer.css"
 
 export default function Footer() {
@@ -9,7 +10,7 @@ export default function Footer() {
         <div className="footer-col">
           <h3 className="footer-logo">tiajoven</h3>
           <p className="footer-desc">
-            Tiajoven, büyük beden kadınlara özel şıklığı ve rahatlığı bir araya getirir.
+            Tiajoven, büyük beden kadın giyime özel şıklığı ve rahatlığı bir araya getirir.
             Kendinizi iyi hissettiren stiller için doğru adrestesiniz.
           </p>
         </div>
@@ -18,10 +19,10 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Hızlı Erişim</h4>
           <ul>
-            <li><a href="/">Ana Sayfa</a></li>
-            <li><a href="/urunler">Tüm Ürünler</a></li>
-            <li><a href="/hakkimizda">Hakkımızda</a></li>
-            <li><a href="/iletisim">İletişim</a></li>
+             <li><Link to="/">Ana Sayfa</Link></li>
+            <li><Link to="/urunler">Tüm Ürünler</Link></li>
+            <li><Link to="/hakkimizda">Hakkımızda</Link></li>
+            <li><Link to="/iletisim">İletişim</Link></li>
           </ul>
         </div>
 

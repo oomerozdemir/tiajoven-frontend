@@ -70,6 +70,7 @@ export default function App(){
 
 /* 
 **********************************YAPILACAKLAR***********************
+contactPage mobile responsive yap
 
 hakkımızda,sss gıbı sayfaları yapalım
 
