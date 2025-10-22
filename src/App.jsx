@@ -1,4 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom"
+import "./App.css"
+import "./index.css"
+
 import NavBar from "./components/navbar.jsx"
 import Home from "./pages/Home.jsx"
 import Footer from "./components/footer.jsx"
@@ -19,6 +22,7 @@ import CategoryList from "./pages/admin/CategoryList.jsx"
 import CategoryNew from "./pages/admin/CategoryNew.jsx"
 import { useAuth } from "./store/auth"
 import AdminMessages from "./pages/admin/AdminMessages.jsx"
+
 
 export default function App(){
   const { user } = useAuth()

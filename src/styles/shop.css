@@ -308,3 +308,23 @@
     max-width: 86%;
   }
 }
+
+/* Slider ve grid overflow düzeltmesi */
+.catalog-grid,
+.product-grid,
+.cat-grid {
+  overflow-x: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .catalog-grid.catalog-slider,
+  .product-grid.fp-slider,
+  .cat-grid.cat-slider {
+    padding-left: 8px;
+    padding-right: 8px;
+    scroll-padding-left: 8px;
+    scroll-padding-right: 8px;
+  }
+}
