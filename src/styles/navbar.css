@@ -1,224 +1,149 @@
-.tj-header{
-  position: sticky; top:0; z-index:50;
-  background: rgba(255,255,255,.85);
-  backdrop-filter: blur(8px);
+/* ============ Navbar.css (tam sürüm) ============ */
+/* Temel değişkenler */
+:root{
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #111827;
+  --accent-weak: #f3f4f6;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+/* Yardımcılar */
+.hide-on-mobile { display: none; }
+.show-on-mobile { display: inline-flex; }
+
+@media (min-width: 768px) {
+  .hide-on-mobile { display: flex; }
+  .show-on-mobile { display: none; }
+}
+
+.container { padding: 0 16px; max-width: 1200px; margin: 0 auto; }
+
+/* ============ Header ============ */
+.tj-header{ position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid var(--border); }
+.tj-topbar{ display:flex; align-items:center; justify-content:space-between; gap: 12px; height: 60px; }
+.tj-logo{ font-weight: 700; font-size: 20px; color: var(--text); text-decoration:none; letter-spacing:.2px; }
+
+/* Icon/Buttons */
+.icon-btn{ border:0; background:transparent; padding:8px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; }
+.icon-btn:hover{ background: var(--accent-weak); }
+
+.tj-burger{ display: none; }
+.tj-burger:active{ transform: scale(.98); }
+
+/* Actions (sağ taraf) */
+.tj-actions{ display:flex; align-items:center; gap:6px; }
+.tj-auth-links{ display:flex; gap:8px; align-items:center; }
+.tj-auth-links .link-sm{
+  display:inline-flex; align-items:center; gap:6px; font-size:14px; padding:8px 10px; border-radius:10px; color:var(--text); text-decoration:none; background:transparent;
+}
+.tj-auth-links .link-sm.solid{ background:#111827; color:#fff; }
+.tj-auth-links .link-sm:hover{ background:var(--accent-weak); }
+.tj-auth-links .link-sm.solid:hover{ filter: brightness(.95); }
+
+/* Kullanıcı menüsü */
+.tj-user{ position: relative; z-index: 1000; }
+.tj-userbtn{ display:inline-flex; align-items:center; gap:6px; padding:8px 10px; border-radius:10px; border:0; background:transparent; cursor:pointer; }
+.tj-userbtn:hover{ background:var(--accent-weak); }
+.tj-usermenu{
+  position:absolute; right:0; top:calc(100% + 8px); min-width: 180px;
+  background:#fff; border:1px solid var(--border); border-radius:12px; box-shadow: var(--shadow); padding:6px;
+}
+.tj-usermenu-item{
+  width:100%; display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:8px;
+  color:var(--text); text-decoration:none; background:transparent; border:0; cursor:pointer;
+}
+.tj-usermenu-item:hover{ background:var(--accent-weak); }
+.tj-usermenu-item.danger{ color:#b91c1c; }
+
+/* ============ Chipbar (alt sıra, desktop) ============ */
+.tj-chipbar{ display:flex; align-items:center; gap:10px; height: 56px; }
+.chip{
+  display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+  background:#f3f4f6; color:#111; text-decoration:none; font-size:14px; border:1px solid #eef0f2;
+}
+.chip:hover{ background:#edeff2; }
+
+/* Dropdown */
+.chip-dropdown{ position: relative; }
+.chip-dropdown .chip{ cursor:pointer; }
+.dropdown-menu{
+  position:absolute; top:calc(100% + 8px); left:0; min-width:240px; background:#fff; border:1px solid var(--border);
+  border-radius:12px; box-shadow: var(--shadow); padding:8px; display:none; max-height: 60vh; overflow:auto;
+}
+.dropdown-menu.active{ display:block; }
+.dropdown-menu a{ display:block; padding:10px 12px; border-radius:8px; color:var(--text); text-decoration:none; }
+.dropdown-menu a:hover{ background:var(--accent-weak); }
+.dropdown-empty{ display:block; padding:10px 12px; color: var(--muted); }
+
+/* ============ Arama ============ */
+.tj-search{ position: relative; display:flex; align-items:center; margin-left:auto; }
+.tj-search input{
+  height:38px; width:min(56vw, 420px); border:1px solid var(--border); border-radius:999px;
+  padding: 0 42px 0 14px; outline:none; font-size:14px; background:#fff;
+}
+.tj-search button{
+  position:absolute; right:4px; height:30px; width:34px; border:0; border-radius:999px; background:transparent; cursor:pointer;
+}
+.tj-search button:hover{ background:var(--accent-weak); }
+
+@media (max-width: 420px) {
+  .tj-search input{ width: 68vw; height:36px; padding-right:38px; font-size:13px; }
+}
+
+/* ============ Mobil Menü (off-canvas) ============ */
+.tj-mobile{ position: fixed; inset: 0; z-index: 60; pointer-events: none; }
+.tj-mobile.open{ pointer-events: auto; }
+
+.tj-mobile-backdrop{
+  position:absolute; inset:0; background: rgba(0,0,0,.35);
+  opacity:0; transition: opacity .25s ease;
+}
+.tj-mobile.open .tj-mobile-backdrop{ opacity:1; }
+
+.tj-drawer{
+  position:absolute; left:0; top:0; bottom:0; width: min(92vw, 360px);
+  background:#fff; box-shadow: 0 20px 60px rgba(0,0,0,.20);
+  transform: translateX(-102%); transition: transform .25s ease;
+  display:flex; flex-direction:column; gap:12px; padding:14px;
+}
+.tj-mobile.open .tj-drawer{ transform: translateX(0); }
+
+.drawer-head{
+  display:flex; align-items:center; justify-content:space-between; padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
 }
 
-/* üst sıra */
-.tj-topbar{
-  display:flex; align-items:center; justify-content:space-between;
-  padding: 12px 0;
+/* Mobil arama */
+.tj-search-mobile{ margin: 10px 0 2px; }
+.tj-search-mobile input{ width:100%; }
+
+/* Mobil link listesi */
+.mobile-links{ display:grid; gap:8px; padding-bottom: 24px; }
+.mobile-links a,
+.mobile-links .link-reset{
+  text-decoration:none; color:#111; font-size:15px; padding:10px 2px; border-radius:8px;
 }
-.tj-burger{
-  border:0; background:transparent; padding:8px; margin:-8px;
-}
-.tj-logo{
-  font-weight:900; letter-spacing:.5px; font-size:26px; text-decoration:none; color:var(--text);
-}
+.link-reset{ background:none; border:0; padding:0; text-align:left; }
+.link-reset.danger{ color:#b91c1c; }
 
-/* sağ ikonlar */
-.tj-actions{ display:flex; gap:10px; }
+/* Mobil dropdown genişliği */
+.chip-dropdown.full .dropdown-menu{ left:0; right:auto; min-width:220px; }
+.dropdown-menu.left-0{ left:0; right:auto; }
 
-/* alt sıra: chipler + arama */
-.tj-chipbar{
-  display:flex; align-items:center; gap:10px;
-  padding: 0 0 12px 0;
-  overflow-x: auto;
-}
-.tj-chipbar::-webkit-scrollbar{ height:6px; }
-.tj-chipbar::-webkit-scrollbar-thumb{ background:#ddd; border-radius:8px; }
-
-/* arama */
-.tj-search{
-  margin-left:auto; position:relative; flex:1; min-width:220px; max-width:420px;
-  display:flex; align-items:center;
-}
-.tj-search input{
-  width:100%; padding:10px 40px 10px 14px;
-  border:1px solid var(--border); border-radius: 999px; background:#fff;
-  font-size:14px;
-}
-.tj-search button{
-  position:absolute; right:6px; top:50%; transform:translateY(-50%);
-  border:0; background:transparent; padding:6px; cursor:pointer;
-}
-
-/* mobil menü */
-.tj-mobile{ display:none; }
-.tj-mobile.open{ display:block; }
-.tj-mobile ul{ list-style:none; padding: 8px 0 14px; margin:0; display:grid; gap:8px; }
-.tj-mobile a{ text-decoration:none; color:inherit; padding:8px 2px; }
-
-/* Kullanıcı Alanı */
-.tj-auth-links { display:flex; gap:8px; align-items:center; }
-.link-sm{
-  display:inline-flex; align-items:center; gap:6px;
-  padding:8px 12px; border:1px solid var(--border); border-radius:999px;
-  text-decoration:none; color:inherit; font-size:13px; background:#fff;
-}
-.link-sm.solid{ background:#111; color:#fff; border-color:#111; }
-.link-sm:hover{ opacity:.92; }
-
-.tj-user{ position:relative; }
-.tj-userbtn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border, #e5e7eb);
-  background: #fff;
-  cursor: pointer;
-}
-.tj-userbtn:hover {
-  background: #f6f6f6;
-}
-.tj-username{ max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; }
-
-.tj-usermenu{
-  position:absolute; right:0; top:calc(100% + 6px);
-  background:#fff; border:1px solid var(--border); border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  min-width:180px; padding:6px; z-index:60;
-}
-.tj-usermenu-item{
-  width:100%; text-align:left; padding:10px 12px; border-radius:8px;
-  border:0; background:transparent; cursor:pointer; display:flex; align-items:center; gap:8px;
-  text-decoration:none; color:inherit; font-size:14px;
-}
-.tj-usermenu-item:hover{ background:#f6f6f6; }
-.tj-usermenu-item.danger{ color:#b91c1c; }
-
-.link-reset{ background:none; border:0; padding:8px 0; color:inherit; text-align:left; }
-
-
-
-/* ===============================
-   CATEGORY DROPDOWN TASARIMI
-   =============================== */
-
-   .chip-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border: 1px solid var(--border, #e5e7eb);
-  border-radius: 999px;
-  background: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-  white-space: nowrap;
-}
-
-.chip:hover {
-  background: #f6f6f6;
-}
-
-
-.chip-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 110%;
-  left: 0;
-  min-width: 180px;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-6px);
-  transition: all 0.25s ease;
-  z-index: 10;
-}
-
-.dropdown-menu.active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-
-.dropdown-menu::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 18px;
-  border-width: 6px;
-  border-style: solid;
-  border-color: transparent transparent #fff transparent;
-  filter: drop-shadow(0 -1px 1px rgba(0,0,0,0.08));
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 16px;
-  font-size: 14px;
-  color: #333;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-
-.dropdown-menu a:hover {
-  background: #f8f8f8;
-}
-
-.dropdown-item {
-  display: block;
-  padding: 10px 16px;
-  color: #222;
-  text-decoration: none;
-  font-size: 15px;
-  transition: background 0.2s;
-}
-
-
-.dropdown-item:hover {
-  background: #f5f5f5;
-}
-
-
-/* CHIP BAR */
-.tj-chipbar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  overflow-x: visible; /* Menü gizlenmesin */
-}
-
-
-/* Dropdown menü tam görünsün */
-.chip-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-
-
-/* responsive */
+/* ============ Ekran kırılımları ============ */
 @media (min-width: 768px){
-  .tj-burger{ display:none; }
-  .tj-mobile{ display:none !important; }
+  .tj-topbar{ height: 66px; }
+  .tj-chipbar{ height: 60px; }
 }
 
+/* Küçük iyileştirmeler */
+.tj-header .tj-logo:hover{ opacity:.9; }
+.tj-chipbar .chip.w-full{ width:100%; justify-content:space-between; }
 
-@media (max-width: 520px) {
-  .dropdown-menu {
-    left: 0;
-    right: auto;
-    min-width: 160px;
-  }
+
+@media (max-width: 767.98px){
+  .tj-burger{ display: inline-flex; }
 }

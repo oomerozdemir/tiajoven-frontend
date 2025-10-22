@@ -29,8 +29,8 @@ export default function Footer() {
         <div className="footer-col">
           <h4>İletişim</h4>
           <ul className="footer-contact">
-            <li><Phone size={16}/> <a href="tel:+905555555555">+90 533 777 47 71</a></li>
-            <li><Mail size={16}/> <a href="mailto:info@tiajoven.com">iletisim@tiajoventekstil.com</a></li>
+            <li><Phone size={16}/> <a href="tel:+905337774771">+90 533 777 47 71</a></li>
+            <li><Mail size={16}/> <a href="mailto:info@tiajoven.com">info@tiajoventekstil.com</a></li>
           </ul>
           <div className="footer-socials">
             <a href="https://www.instagram.com/tiajoventekstil" target="_blank" rel="noreferrer"><Instagram size={18}/></a>

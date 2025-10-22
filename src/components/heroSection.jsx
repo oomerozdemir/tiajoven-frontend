@@ -2,10 +2,10 @@ import "../styles/heroSection.css"
 
 export default function HeroSection() {
   const whatsappRetail =
-    "https://wa.me/905555555555?text=Merhaba%2C%20tiajoven%20ürünleri%20hakkında%20bilgi%20almak%20istiyorum."
+    "https://wa.me/905337774771?text=Merhaba%2C%20tiajoven%20ürünleri%20hakkında%20bilgi%20almak%20istiyorum."
 
   const whatsappWholesale =
-    "https://wa.me/905555555555?text=Merhaba%2C%20toptan%20giyim%20hakk%C4%B1nda%20bilgi%20ve%20fiyat%20teklifi%20almak%20istiyorum.%20(Marka%3A%20Tiajoven)"
+    "https://wa.me/905337774771?text=Merhaba%2C%20toptan%20giyim%20hakk%C4%B1nda%20bilgi%20ve%20fiyat%20teklifi%20almak%20istiyorum.%20(Marka%3A%20Tiajoven)"
 
   return (
     <>

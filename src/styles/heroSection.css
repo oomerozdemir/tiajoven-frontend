@@ -9,7 +9,6 @@
   aspect-ratio: 16 / 9;
 }
 
-/* Sadece img hedefleniyor */
 .hero-media .hero-img {
   position: absolute;
   inset: 0;
@@ -21,7 +20,6 @@
   transition: transform 8s ease;
 }
 
-/* Hover efekti doğrudan hero-img'e */
 .hero:hover .hero-media .hero-img {
   transform: scale(1.05);
 }
@@ -183,4 +181,41 @@
 @media (max-width: 640px) {
   .h-title { font-size: 16px; }
   .h-text  { font-size: 14px; }
+}
+
+/* ===== Sadece MOBİL  */
+@media (max-width: 768px) {
+  .hero { aspect-ratio: auto; min-height: 380px; }
+
+  /* 2) İçeriği ortaya al ve hizala */
+  .hero-content {
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-copy { max-width: 90%; margin: 0 auto; }
+
+  /* 3) Mobilde daha uygun bir gradient */
+  .hero-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(0,0,0,.55) 0%,
+      rgba(0,0,0,.35) 50%,
+      rgba(0,0,0,.15) 80%,
+      transparent 100%
+    );
+  }
+
+  /* 4) Görsel konumu */
+  .hero-media .hero-img { object-position: 30% top; }
+
+  /* 5) Buton ve metin boyutları hafif küçültme */
+  .hero-title { font-size: clamp(28px, 9vw, 36px); }
+  .hero-text  { font-size: 15px; margin-bottom: 24px; }
+  .hero-btn   { padding: 10px 22px; font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+  .hero { min-height: 340px; }
+  .hero-title { font-size: 26px; }
+  .hero-text  { font-size: 14px; line-height: 1.5; }
 }
