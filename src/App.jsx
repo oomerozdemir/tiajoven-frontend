@@ -70,7 +70,6 @@ export default function App(){
 
 /* 
 **********************************YAPILACAKLAR***********************
-contactPage mobile responsive yap
 
 hakkımızda,sss gıbı sayfaları yapalım
 
@@ -79,5 +78,9 @@ animasyonlar ekleyebiliriz
 one cıkanlardan yonlendırme yapalım tıklandıgında kategorısıne gıtsın
 
 seo calismalarini yap
+
+hangi urune ne kadar tiklandi bunlari izleyelim
+
+kayitli kullanicilari aktif goruntuleyebilecegimiz bir yer yapalim
 
 */
