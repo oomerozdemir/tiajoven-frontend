@@ -35,25 +35,23 @@ export default function CategoryPage() {
     })();
   }, [slug]);
 
-  if (loading) return <div className="container center"><div className="spinner" /><p>Yükleniyor...</p></div>;
-  if (!category) return <p>Kategori bulunamadı.</p>;
-
-  // ---- SEO alanı ----
+  // --- SEO: hook'lar her zaman aynı sırada çağrılsın ---
   const origin = typeof window !== "undefined" ? window.location.origin : "https://www.tiajoven.com";
-  const pageUrl = `${origin}/kategori/${category.slug}`;
-  const pageTitle = `${category.name} | Tiajoven`;
-  const pageDescription = `${category.name} kategorisindeki ürünleri keşfet. Yeni sezon ve trend parçalar uygun toptan fiyatlarla.`;
-  // OG görseli için ürünlerden ilk görseli seç (yoksa site default görselini kullan)
+  const pageUrl = `${origin}/kategori/${slug}`;
+  const pageTitle = `${category?.name ?? "Kategori"} | Tiajoven`;
+  const pageDescription = category?.name
+    ? `${category.name} kategorisindeki ürünleri keşfet. Yeni sezon ve trend parçalar uygun toptan fiyatlarla.`
+    : "Tiajoven kategorileri.";
   const ogImage = useMemo(() => {
     const first = items?.[0];
     return first?.imageUrl || `${origin}/images/og-default.jpg`;
   }, [items, origin]);
-  // JSON-LD (Breadcrumb + Koleksiyon listesi)  
+
   const structuredData = useMemo(() => {
     const itemList = {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      itemListElement: items.map((p, idx) => ({
+      itemListElement: (items || []).map((p, idx) => ({
         "@type": "ListItem",
         position: idx + 1,
         url: `${origin}/urun/${p.slug}`
@@ -64,17 +62,34 @@ export default function CategoryPage() {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Kategori", item: `${origin}/urunler` },
-        { "@type": "ListItem", position: 2, name: category.name, item: pageUrl }
+        { "@type": "ListItem", position: 2, name: category?.name ?? "Kategori", item: pageUrl }
       ]
     };
     return [breadcrumb, itemList];
   }, [items, category?.name, pageUrl, origin]);
 
+  if (loading) {
+    return (
+      <>
+        <SEO title={pageTitle} description={pageDescription} url={pageUrl} image={ogImage} type="collection" />
+        <div className="container center"><div className="spinner" /><p>Yükleniyor...</p></div>
+      </>
+    );
+  }
+
+  if (!category) {
+    return (
+      <>
+        <SEO title={pageTitle} description={pageDescription} url={pageUrl} image={ogImage} type="collection" />
+        <p>Kategori bulunamadı.</p>
+      </>
+    );
+  }
 
   return (
-     <div className="shop-wrapper">
+    <div className="shop-wrapper">
       <SEO
-       title={pageTitle}
+        title={pageTitle}
         description={pageDescription}
         url={pageUrl}
         image={ogImage}
