@@ -11,6 +11,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/sitemap.xml", "destination": "https://tiajoven-backend.onrender.com/api/sitemap.xml" },
     {
       "source": "/api/:path*",
       "destination": "https://tiajoven-backend.onrender.com/api/:path*"
