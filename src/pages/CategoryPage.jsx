@@ -1,4 +1,3 @@
-// src/pages/CategoryPage.jsx
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../lib/api";
