@@ -1,5 +1,6 @@
 import "../styles/contactPage.css";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import SEO from "../components/seo";
 
 export default function Contact() {
    const [status, setStatus] = useState({ type: "", msg: "" });
@@ -40,8 +41,62 @@ export default function Contact() {
   }
 }
 
+    // ---- SEO alanı ----
+  const origin = typeof window !== "undefined" ? window.location.origin : "https://www.tiajoven.com";
+  const pageUrl = `${origin}/iletisim`;
+  const pageTitle = "İletişim | Tiajoven";
+  const pageDescription = "Tiajoven ile iletişime geçin: adres, telefon, e-posta ve iletişim formu.";
+  const ogImage = `${origin}/images/og-contact.jpg`; 
+
+  const structuredData = useMemo(() => ([
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Anasayfa", item: origin + "/" },
+        { "@type": "ListItem", position: 2, name: "İletişim", item: pageUrl }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Tiajoven Tekstil",
+      url: origin,
+      email: "info@tiajoven.com",
+      telephone: "+90 533 777 47 71",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Şair Nigar Sok No 58/4 D:7 Osmanbey.",
+        addressLocality: "Şişli",
+        addressRegion: "İstanbul",
+        addressCountry: "TR"
+      },
+      contactPoint: [{
+        "@type": "ContactPoint",
+       telephone: "+90 533 777 47 71",
+        contactType: "customer support",
+       areaServed: "TR",
+        availableLanguage: ["tr"]
+      }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: "İletişim",
+      url: pageUrl
+    }
+  ]), [origin, pageUrl]);
+
   return (
     <section className="contact-wrap">
+      <SEO
+        title={pageTitle}
+       description={pageDescription}
+        url={pageUrl}
+        image={ogImage}
+        type="website"
+        structuredData={structuredData}
+      />
       <div className="contact-grid">
         {/* Sol: Şirket Bilgileri */}
         <aside className="contact-company">
@@ -58,15 +113,15 @@ export default function Contact() {
 
           <div className="c-block">
             <div className="c-label">Telefon</div>
-            <a className="c-value" href="tel:+902123862000">+90 533 777 47 71</a>
+            <a className="c-value" href="tel:+905337774771">+90 533 777 47 71</a>
           </div>
 
      
 
           <div className="c-block">
             <div className="c-label">E-Posta</div>
-            <a className="c-value" href="mailto:iletisim@tiajoventekstil.com">
-              iletisim@tiajoventekstil.com
+            <a className="c-value" href="mailto:info@tiajoven.com">
+              iletisim@tiajoven.com
             </a>
           </div>
         </aside>

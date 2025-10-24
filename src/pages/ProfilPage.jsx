@@ -31,7 +31,6 @@ export default function ProfilePage(){
       }
     })()
 
-    // Favorileri de çek
     fetchFavorites()
 
     return () => { mounted = false }

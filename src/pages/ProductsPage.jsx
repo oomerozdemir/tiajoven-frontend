@@ -5,6 +5,7 @@ import "../styles/shop.css";
 import useReveal from "../hooks/useReveal";
 import ProductCard from "../components/productCard";
 import CategoryChips from "../components/categoryChips";
+import SEO from "../components/seo";
 
 export default function ProductsPage() {
   const [items, setItems] = useState([]);
@@ -74,8 +75,35 @@ export default function ProductsPage() {
     return arr;
   }, [items, q, categoryId, sort]);
 
+  // ---- SEO alanı ----
+  const origin = typeof window !== "undefined" ? window.location.origin : "https://www.tiajoven.com";
+  const pageUrl = `${origin}/urunler`;
+  const pageTitle = "Ürünler | Tiajoven";
+  const pageDescription = "Tiajoven toptan koleksiyonunu keşfet: yeni sezon büyük beden kadın giyim ürünleri.";
+  const ogImage = useMemo(() => {
+    const first = filtered?.[0];
+    return first?.imageUrl || `${origin}/images/og-default.jpg`;
+  }, [filtered, origin]);
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+   itemListElement: filtered.map((p, idx) => ({
+      "@type": "ListItem",
+     position: idx + 1,
+      url: `${origin}/urun/${p.slug}`
+   }))
+  }), [filtered, origin]);
+
   return (
     <div className="prod-container">
+      <SEO
+        title={pageTitle}
+        description={pageDescription}
+        url={pageUrl}
+        image={ogImage}
+        type="collection"
+        structuredData={structuredData}
+      />
       <header className="prod-filters">
         <input className="prod-input" placeholder="Ara: ürün, kategori…" value={q} onChange={(e)=>setQ(e.target.value)} />
         <select className="prod-select" value={categoryId} onChange={(e)=>setCategoryId(e.target.value)}>
@@ -95,7 +123,6 @@ export default function ProductsPage() {
 
       {!loading && !error && (
         <>
-          {/* Masaüstü: grid, Mobil: slider (CSS belirler) */}
           <section className="catalog-grid catalog-slider" style={{ marginTop: 16 }} ref={rowRef}>
             {filtered.map(p => <ProductCard key={p.id} product={p} />)}
           </section>

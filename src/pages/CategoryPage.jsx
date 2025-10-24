@@ -1,10 +1,11 @@
 // src/pages/CategoryPage.jsx
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../lib/api";
 import ProductCard from "../components/productCard";
 import "../styles/shop.css";
 import CategoryChips from "../components/categoryChips";
+import SEO from "../components/seo";
 
 export default function CategoryPage() {
   const { slug } = useParams();
@@ -37,8 +38,50 @@ export default function CategoryPage() {
   if (loading) return <div className="container center"><div className="spinner" /><p>Yükleniyor...</p></div>;
   if (!category) return <p>Kategori bulunamadı.</p>;
 
+  // ---- SEO alanı ----
+  const origin = typeof window !== "undefined" ? window.location.origin : "https://www.tiajoven.com";
+  const pageUrl = `${origin}/kategori/${category.slug}`;
+  const pageTitle = `${category.name} | Tiajoven`;
+  const pageDescription = `${category.name} kategorisindeki ürünleri keşfet. Yeni sezon ve trend parçalar uygun toptan fiyatlarla.`;
+  // OG görseli için ürünlerden ilk görseli seç (yoksa site default görselini kullan)
+  const ogImage = useMemo(() => {
+    const first = items?.[0];
+    return first?.imageUrl || `${origin}/images/og-default.jpg`;
+  }, [items, origin]);
+  // JSON-LD (Breadcrumb + Koleksiyon listesi)  
+  const structuredData = useMemo(() => {
+    const itemList = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: items.map((p, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        url: `${origin}/urun/${p.slug}`
+      }))
+    };
+    const breadcrumb = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Kategori", item: `${origin}/urunler` },
+        { "@type": "ListItem", position: 2, name: category.name, item: pageUrl }
+      ]
+    };
+    return [breadcrumb, itemList];
+  }, [items, category?.name, pageUrl, origin]);
+
+
   return (
-    <div className="shop-wrapper">
+     <div className="shop-wrapper">
+      <SEO
+       title={pageTitle}
+        description={pageDescription}
+        url={pageUrl}
+        image={ogImage}
+        type="collection"
+        structuredData={structuredData}
+      />
+
       <nav className="breadcrumb breadcrumb--offset">
         <Link to="/urunler">Kategori</Link>
         <span>›</span>

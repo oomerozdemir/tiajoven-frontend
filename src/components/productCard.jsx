@@ -36,8 +36,7 @@ export default function ProductCard({ product }) {
       ? product.sizes.split(",").map(s => s.trim()).filter(Boolean)
       : Array.isArray(product?.sizes) ? product.sizes : []
 
-  // ✅ WhatsApp numaranı buraya gir (başında +90 olacak şekilde)
-  const phoneNumber = "+905551112233"
+  const phoneNumber = "+905337774771"
 
   const handleWhatsapp = () => {
     const text = encodeURIComponent(

@@ -1,7 +1,22 @@
+import SEO from "../components/seo"
 import "../styles/about.css"
 
 export default function AboutPage() {
+  const pageTitle = "Hakkımızda | Tiajoven";
+  const pageDescription =
+    "Tiajoven, büyük beden kadın giyimde 6 yıllık tecrübeyle Türkiye’nin 66 ilindeki mağazalara toptan satış ile koleksiyonlar sunar.";
+  const pageUrl = "https://www.tiajoven.com/hakkimizda";
+  const ogImage = "https://www.tiajoven.com/images/og-about.jpg";
+
   return (
+      <>
+<SEO
+        title={pageTitle}
+        description={pageDescription}
+        url={pageUrl}
+        image={ogImage}
+        type="website"
+      />
     <section className="about-wrap">
       <header className="about-hero">
         <h1 className="about-title">Hakkımızda</h1>
@@ -52,5 +67,6 @@ export default function AboutPage() {
         </div>
       </section>
     </section>
+    </>
   )
 }
