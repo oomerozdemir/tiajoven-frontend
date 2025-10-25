@@ -23,6 +23,8 @@ export default function Footer() {
             <li><Link to="/urunler">Tüm Ürünler</Link></li>
             <li><Link to="/hakkimizda">Hakkımızda</Link></li>
             <li><Link to="/iletisim">İletişim</Link></li>
+            <li><Link to="/sss">SSS</Link></li>
+
           </ul>
         </div>
 

@@ -44,7 +44,7 @@ export default function Contact() {
     // ---- SEO alanı ----
   const origin = typeof window !== "undefined" ? window.location.origin : "https://www.tiajoven.com";
   const pageUrl = `${origin}/iletisim`;
-  const pageTitle = "İletişim | Tiajoven";
+  const pageTitle = "Tiajoven | Toptan Büyük Beden Giyim Üreticisi";
   const pageDescription = "Tiajoven ile iletişime geçin: adres, telefon, e-posta ve iletişim formu.";
   const ogImage = `${origin}/images/og-contact.jpg`; 
 

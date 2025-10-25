@@ -1,0 +1,120 @@
+.faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Arial", sans-serif;
+  color: #333;
+}
+
+.faq-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* --- Accordion Item --- */
+.faq-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.faq-item:hover {
+  background: #fff;
+}
+
+.faq-question {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  position: relative;
+}
+
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+.faq-item.open .faq-question::after {
+  content: "–";
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 10px;
+}
+
+.faq-answer.show {
+  max-height: 200px;
+  opacity: 1;
+}
+
+
+/* --- Alt CTA Bölümü --- */
+.faq-contact-cta {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px 20px;
+  border-top: 1px solid #ddd;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+}
+
+.faq-contact-cta h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.faq-contact-cta p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.faq-contact-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-contact-btn:hover {
+  background-color: #333;
+}
+
+
+@media (max-width: 600px) {
+  .faq-container {
+    padding: 20px 10px;
+  }
+  .faq-title {
+    font-size: 1.5rem;
+  }
+  .faq-question {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,59 @@
+:root{
+  --splash-hide-delay: 1.8s;  /* fadeOut başlama süresi */
+  --splash-fadeout: 0.8s;     /* kapanış animasyonu */
+  --logo-fadein: 1.2s;        /* logo görünme süresi */
+}
+
+.no-scroll { overflow: hidden; }
+
+/* Tam ekran kaplama */
+.splash-container{
+  position:fixed; inset:0;
+  z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(135deg, #f7f7f7, #ececec);
+  -webkit-tap-highlight-color: transparent;
+  animation: splashFadeOut var(--splash-fadeout) ease-in-out var(--splash-hide-delay) forwards;
+  cursor:pointer; /* tıkla ve geç */
+}
+
+/* Dalgalı arka plan – beyaz/gri minimal */
+.splash-bg{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(120% 80% at 50% 50%, #f2f2f2 0%, #fafafa 40%, #eeeeee 80%),
+    repeating-linear-gradient(115deg, #f7f7f7 0 14px, #efefef 14px 28px);
+  filter: saturate(0.9) contrast(1.02);
+  background-size: 140% 140%, 200% 200%;
+  animation: waveMove 5s ease-in-out infinite alternate;
+}
+
+/* Logo tipi – zarif serif görüntü */
+.splash-logo{
+  position:relative; z-index:1;
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-size: clamp(32px, 8vw, 44px);
+  letter-spacing: 0.18em;
+  color:#111;
+  opacity:0; transform: translateY(6px) scale(0.98);
+  animation: logoFade var(--logo-fadein) ease forwards 0.4s;
+}
+
+/* Animasyonlar */
+@keyframes logoFade{
+  to{ opacity:1; transform: translateY(0) scale(1); }
+}
+@keyframes waveMove{
+  0%{ transform: translateY(0) scale(1); }
+  100%{ transform: translateY(-3%) scale(1.04); }
+}
+@keyframes splashFadeOut{
+  to{ opacity:0; visibility:hidden; pointer-events:none; }
+}
+
+/* Hareket hassasiyeti olan kullanıcılar için animasyonları azalt */
+@media (prefers-reduced-motion: reduce){
+  .splash-bg{ animation:none; }
+  .splash-container{ animation: splashFadeOut 0.4s ease var(--splash-hide-delay) forwards; }
+  .splash-logo{ animation: none; opacity:1; }
+}

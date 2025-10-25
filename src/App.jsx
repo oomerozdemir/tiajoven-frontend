@@ -12,6 +12,8 @@ import CategoryPage from "./pages/CategoryPage.jsx"
 import ProfilePage from "./pages/ProfilPage.jsx"
 import ContactPage from "./pages/ContactPage.jsx"
 import AboutPage from "./pages/AboutPage.jsx"
+import FAQPage from "./pages/FAQPage.jsx"
+import SplashScreen from "./components/splahsScreen.jsx"
 
 import AdminLayout from "./pages/admin/AdminLayout.jsx"
 import AdminHome from "./pages/admin/AdminHome.jsx"
@@ -32,6 +34,7 @@ export default function App(){
 
   return (
     <>
+    <SplashScreen />
       <NavBar />
       <main className="main">
         <Routes>
@@ -57,6 +60,8 @@ export default function App(){
           <Route path="/profil" element={<ProfilePage />} />
           <Route path="/iletisim" element={<ContactPage />} />
           <Route path="/hakkimizda" element={<AboutPage />} />
+          <Route path="/sss" element={<FAQPage />} />
+
 
           {/* Optional: 404 */}
           {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
@@ -71,7 +76,6 @@ export default function App(){
 /* 
 **********************************YAPILACAKLAR***********************
 
-hakkımızda,sss gıbı sayfaları yapalım
 
 animasyonlar ekleyebiliriz
 
@@ -82,5 +86,7 @@ seo calismalarini yap
 hangi urune ne kadar tiklandi bunlari izleyelim
 
 kayitli kullanicilari aktif goruntuleyebilecegimiz bir yer yapalim
+
+blog ekle
 
 */
